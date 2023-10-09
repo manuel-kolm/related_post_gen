@@ -485,7 +485,7 @@ run_kotlin_native() {
         if [ $HYPER == 1 ]; then
             capture "Kotlin Native" hyperfine -r 10 -w 3 --show-output "./build/bin/native/releaseExecutable/main.kexe"
         else
-            command time -f '%es %Mk' ./build/bin/native/releaseExecutable/main.kexe
+            command ${time} -f '%es %Mk' ./build/bin/native/releaseExecutable/main.kexe
         fi
 
     check_output "related_posts_kotlin_native.json"
