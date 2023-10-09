@@ -104,6 +104,9 @@ jobs:
               with:
                   ocaml-compiler: "5.1"
 
+            - name: Install Kotlin Native
+              uses: gradle/gradle-build-action@v2
+
             - name: Run Benchmark
               run: ./run.sh all raw_results.md
 
