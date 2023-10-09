@@ -11,7 +11,7 @@ import kotlin.time.measureTime
 data class Post(@JsonNames("_id") val id: String, val title: String, val tags: List<String>)
 
 @Serializable
-data class RelatedPosts(@JsonNames("_id") val id: String, val tags: List<String>, val related: Array<Post?>);
+data class RelatedPosts(val _id: String, val tags: List<String>, val related: Array<Post?>);
 
 data class PostWithSharedTags(var count: Int, var postId: Int)
 
