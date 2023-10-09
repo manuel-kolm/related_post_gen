@@ -18,7 +18,7 @@ data class PostWithSharedTags(var count: Int, var postId: Int)
 const val TOP_N = 5;
 
 fun main() {
-    val posts = Json.decodeFromString<Array<Post>>(readAllText("../data.json"))
+    val posts = Json.decodeFromString<Array<Post>>(readAllText("../posts.json"))
 
     val allRelatedPosts: Array<RelatedPosts?>?;
     val timeInMillis = measureTime {
