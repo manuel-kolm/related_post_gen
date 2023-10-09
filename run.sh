@@ -478,6 +478,19 @@ run_ocaml() {
     check_output "related_posts_ocaml.json"
 }
 
+run_kotlin_native() {
+    echo "Running Kotlin Native" &&
+        cd ./kotlin_native &&
+        gradle nativeBinaries &&
+        if [ $HYPER == 1 ]; then
+            capture "Kotlin Native" hyperfine -r 10 -w 3 --show-output "./build/bin/native/releaseExecutable/main.exe"
+        else
+            command time -f '%es %Mk' ./build/bin/native/releaseExecutable/main.exe
+        fi
+
+    check_output "related_posts_kotlin_native.json"
+}
+
 check_output() {
     cd .. &&
         echo "Checking output" &&
@@ -614,6 +627,10 @@ elif [ "$first_arg" = "ocaml" ]; then
 
     run_ocaml
 
+elif [ "$first_arg" = "kotlin_native" ]; then
+
+    run_kotlin_native
+
 elif [ "$first_arg" = "all" ]; then
 
     echo -e "Running all\n" &&
@@ -645,6 +662,7 @@ elif [ "$first_arg" = "all" ]; then
         run_csharp || echo -e "\n" &&
         run_luajit || echo -e "\n" &&
         run_lua || echo -e "\n" &&
+        run_kotlin_native || echo -e "\n" &&
         echo -e "Finished running all\n"
 
 elif [ "$first_arg" = "clean" ]; then
